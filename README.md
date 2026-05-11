@@ -43,18 +43,37 @@ PWA-приложение для гостей и MICE-делегатов отел
 
 ---
 
+## Дизайн
+
+**Концепция:** luxury hospitality — тёмно-синий + золото + кремовый. Не корпоративный, не детский.
+
+| Элемент | Решение |
+|---|---|
+| Цвет primary | Navy `#0c1824` |
+| Цвет accent | Gold `#c9a96e` (скупо — max 3 места на экране) |
+| Фон | Cream `#faf9f6` |
+| Display-шрифт | Playfair Display (название отеля, заголовки) |
+| Body-шрифт | DM Sans |
+| Иконки | SVG везде, emoji запрещены |
+| Кнопки | Белые карточки, gold border при нажатии |
+| Модалки | Bottom sheet стиль |
+| Расписание | Timeline с временем слева |
+
+---
+
 ## Технологии
 
 | Слой | Стек |
 |---|---|
-| Frontend / PWA | Next.js + Tailwind CSS |
-| Backend / БД | Supabase |
+| Frontend / PWA | Next.js 16 + Tailwind CSS v4 + TypeScript |
+| Backend / БД | Supabase (realtime, auth, RLS) |
 | Push | Web Push API + WhatsApp Business API |
-| Хостинг | Vercel |
-| i18n | next-i18next |
+| Хостинг | Vercel (авто-деплой из GitHub) |
+| i18n | next-intl v4 |
+| Шрифты | Playfair Display + DM Sans (next/font/google) |
 | Аналитика | Plausible |
 
-**Языки:** RU, EN, TR, AR (старт)
+**Языки:** RU, EN (старт) → TR, AR (P1)
 
 ---
 
