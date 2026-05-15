@@ -1,73 +1,93 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BottomNav from "../components/BottomNav";
+import { supabase, type HotelRequest, type RequestStatus } from "../../lib/supabase";
 
-type Status = "new" | "in_progress" | "done";
-
-interface Request {
-  id: number;
-  type: string;
-  detail: string;
-  status: Status;
-  time: string;
-}
+const HOTEL_ID = "elexus";
+const ROOM     = "314";
 
 const QUICK_REQUESTS = [
-  { id: "towels",    label: "Extra Towels",    icon: TowelIcon },
-  { id: "cleaning",  label: "Room Cleaning",   icon: CleanIcon },
-  { id: "pillows",   label: "Extra Pillows",   icon: PillowIcon },
-  { id: "toiletries",label: "Toiletries",      icon: ToiletIcon },
-  { id: "iron",      label: "Iron & Board",    icon: IronIcon },
-  { id: "cot",       label: "Baby Cot",        icon: CotIcon },
+  { id: "towels",     label: "Extra Towels",  icon: TowelIcon },
+  { id: "cleaning",   label: "Room Cleaning", icon: CleanIcon },
+  { id: "pillows",    label: "Extra Pillows", icon: PillowIcon },
+  { id: "toiletries", label: "Toiletries",    icon: ToiletIcon },
+  { id: "iron",       label: "Iron & Board",  icon: IronIcon },
+  { id: "cot",        label: "Baby Cot",      icon: CotIcon },
 ];
 
-const STATUS_META: Record<Status, { label: string; color: string; bg: string }> = {
+const STATUS_META: Record<RequestStatus, { label: string; color: string; bg: string }> = {
   new:         { label: "Received",    color: "#c9a96e", bg: "#c9a96e18" },
   in_progress: { label: "In progress", color: "#3b82f6", bg: "#3b82f615" },
   done:        { label: "Completed",   color: "#10b981", bg: "#10b98115" },
 };
 
-let nextId = 10;
-
-const DEMO_REQUESTS: Request[] = [
-  { id: 1, type: "Extra Towels",  detail: "Quick request",  status: "done",        time: "10:23" },
-  { id: 2, type: "Room Cleaning", detail: "Quick request",  status: "in_progress", time: "11:45" },
-];
-
 export default function RequestsPage() {
-  const [requests, setRequests] = useState<Request[]>(DEMO_REQUESTS);
+  const [requests, setRequests] = useState<HotelRequest[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [formText, setFormText] = useState("");
   const [sent, setSent] = useState<string | null>(null);
 
-  function sendQuick(label: string) {
-    const r: Request = {
-      id: nextId++,
+  useEffect(() => {
+    // Load existing requests
+    supabase
+      .from("requests")
+      .select("*")
+      .eq("hotel_id", HOTEL_ID)
+      .eq("room", ROOM)
+      .order("created_at", { ascending: false })
+      .then(({ data }) => { if (data) setRequests(data); });
+
+    // Subscribe to real-time updates
+    const channel = supabase
+      .channel("requests-guest")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "requests", filter: `hotel_id=eq.${HOTEL_ID}` },
+        (payload) => {
+          if (payload.eventType === "INSERT") {
+            setRequests((prev) => [payload.new as HotelRequest, ...prev]);
+          } else if (payload.eventType === "UPDATE") {
+            setRequests((prev) =>
+              prev.map((r) => r.id === (payload.new as HotelRequest).id ? payload.new as HotelRequest : r)
+            );
+          }
+        }
+      )
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
+  }, []);
+
+  async function sendQuick(label: string) {
+    const { data } = await supabase.from("requests").insert({
+      hotel_id: HOTEL_ID,
+      room: ROOM,
       type: label,
       detail: "Quick request",
       status: "new",
-      time: new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }),
-    };
-    setRequests((prev) => [r, ...prev]);
-    setSent(label);
-    setTimeout(() => setSent(null), 3000);
+    }).select().single();
+    if (data) {
+      setSent(label);
+      setTimeout(() => setSent(null), 3000);
+    }
   }
 
-  function sendCustom() {
+  async function sendCustom() {
     if (!formText.trim()) return;
-    const r: Request = {
-      id: nextId++,
+    const { data } = await supabase.from("requests").insert({
+      hotel_id: HOTEL_ID,
+      room: ROOM,
       type: "Custom request",
       detail: formText.trim(),
       status: "new",
-      time: new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }),
-    };
-    setRequests((prev) => [r, ...prev]);
-    setFormText("");
-    setShowForm(false);
-    setSent("Your request");
-    setTimeout(() => setSent(null), 3000);
+    }).select().single();
+    if (data) {
+      setFormText("");
+      setShowForm(false);
+      setSent("Your request");
+      setTimeout(() => setSent(null), 3000);
+    }
   }
 
   return (
@@ -153,6 +173,7 @@ export default function RequestsPage() {
             <div className="flex flex-col gap-2.5">
               {requests.map((r) => {
                 const meta = STATUS_META[r.status];
+                const time = new Date(r.created_at).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
                 return (
                   <div key={r.id} className="bg-white rounded-xl p-4 border border-[var(--color-navy)]/6 shadow-sm shadow-[var(--color-navy)]/5">
                     <div className="flex items-start justify-between gap-2">
@@ -169,7 +190,7 @@ export default function RequestsPage() {
                         {meta.label}
                       </span>
                     </div>
-                    <p className="text-[11px] text-[var(--color-muted)] mt-2">Sent at {r.time}</p>
+                    <p className="text-[11px] text-[var(--color-muted)] mt-2">Sent at {time}</p>
                   </div>
                 );
               })}
@@ -203,10 +224,10 @@ export default function RequestsPage() {
   );
 }
 
-function TowelIcon() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="4" rx="1"/><path d="M5 7v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7"/><path d="M9 11h6"/></svg>; }
-function CleanIcon() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></svg>; }
+function TowelIcon()  { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="4" rx="1"/><path d="M5 7v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7"/><path d="M9 11h6"/></svg>; }
+function CleanIcon()  { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></svg>; }
 function PillowIcon() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="5"/></svg>; }
 function ToiletIcon() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M8 3h8a1 1 0 0 1 1 1v2H7V4a1 1 0 0 1 1-1z"/><path d="M7 6v3a5 5 0 0 0 10 0V6"/><path d="M12 15v6"/><path d="M9 21h6"/></svg>; }
-function IronIcon() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 17h18l-2-8H5L3 17z"/><path d="M5 17v2"/><path d="M19 17v2"/></svg>; }
-function CotIcon() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M3 10V6"/><path d="M21 10V6"/><path d="M7 16v3"/><path d="M17 16v3"/></svg>; }
-function PlusIcon() { return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>; }
+function IronIcon()   { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 17h18l-2-8H5L3 17z"/><path d="M5 17v2"/><path d="M19 17v2"/></svg>; }
+function CotIcon()    { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M3 10V6"/><path d="M21 10V6"/><path d="M7 16v3"/><path d="M17 16v3"/></svg>; }
+function PlusIcon()   { return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>; }
