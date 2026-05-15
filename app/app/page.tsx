@@ -64,7 +64,7 @@ export default function Home() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/60 via-transparent to-[#0c1824]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/30 via-transparent to-[#0c1824]/60" />
         <div className="absolute inset-0 flex flex-col justify-between p-5">
           <div className="flex items-center justify-between">
             <span
@@ -200,7 +200,7 @@ export default function Home() {
             {ANNOUNCEMENTS.map((a) => (
               <div
                 key={a.id}
-                className="bg-white rounded-xl p-4 border border-[var(--color-navy)]/6"
+                className="bg-white rounded-xl p-4 border border-[var(--color-navy)]/6 shadow-sm shadow-[var(--color-navy)]/5"
               >
                 <div className="flex items-center justify-between mb-1">
                   <p className="text-[14px] font-semibold text-[var(--color-navy)]">{a.title}</p>

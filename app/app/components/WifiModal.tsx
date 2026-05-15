@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 interface Props {
   open: boolean;
@@ -8,44 +8,32 @@ interface Props {
 }
 
 export default function WifiModal({ open, onClose }: Props) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
   useEffect(() => {
-    const el = dialogRef.current;
-    if (!el) return;
-    if (open) {
-      el.showModal();
-    } else {
-      el.close();
-    }
-  }, [open]);
-
-  useEffect(() => {
+    if (!open) return;
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [onClose]);
+  }, [open, onClose]);
 
   if (!open) return null;
 
   return (
-    <dialog
-      ref={dialogRef}
+    <div
       role="dialog"
       aria-modal="true"
       aria-label="Wi-Fi details"
-      className="fixed inset-0 m-0 p-0 w-full h-full bg-transparent border-none outline-none"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
+      className="absolute inset-0 z-50"
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-[var(--color-navy)]/50 backdrop-blur-sm" onClick={onClose} />
+      <div
+        className="absolute inset-0 bg-[var(--color-navy)]/50 backdrop-blur-sm"
+        onClick={onClose}
+      />
 
       {/* Bottom sheet */}
-      <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl p-6 max-w-md mx-auto">
+      <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl p-6">
         {/* Handle */}
         <div className="w-10 h-1 bg-[var(--color-navy)]/15 rounded-full mx-auto mb-5" />
 
@@ -57,7 +45,7 @@ export default function WifiModal({ open, onClose }: Props) {
         </h2>
 
         <div className="flex flex-col gap-4 mb-6">
-          <WifiRow label="Network" value="Elexus_Guests" />
+          <WifiRow label="Network"  value="Elexus_Guests" />
           <WifiRow label="Password" value="elexus2024" copyable />
           <WifiRow label="Coverage" value="All hotel areas" />
         </div>
@@ -73,7 +61,7 @@ export default function WifiModal({ open, onClose }: Props) {
           Got it
         </button>
       </div>
-    </dialog>
+    </div>
   );
 }
 
@@ -86,14 +74,14 @@ function WifiRow({ label, value, copyable }: { label: string; value: string; cop
     <div className="flex items-center justify-between py-3 border-b border-[var(--color-navy)]/6">
       <span className="text-[12px] uppercase tracking-wide text-[var(--color-muted)]">{label}</span>
       <div className="flex items-center gap-2">
-        <span className="text-[15px] font-medium text-[var(--color-navy)] font-mono">{value}</span>
+        <span className="text-[14px] font-medium text-[var(--color-navy)] font-mono">{value}</span>
         {copyable && (
           <button
             onClick={copy}
             className="text-[var(--color-gold)] active:opacity-60 cursor-pointer"
             aria-label="Copy password"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
             </svg>
