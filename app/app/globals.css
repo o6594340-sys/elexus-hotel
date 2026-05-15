@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --color-navy:  #0c1824;
+  --color-gold:  #c9a96e;
+  --color-cream: #faf9f6;
+  --color-muted: #8a9099;
+}
+
+@theme inline {
+  --color-navy:  var(--color-navy);
+  --color-gold:  var(--color-gold);
+  --color-cream: var(--color-cream);
+  --color-muted: var(--color-muted);
+  --font-display: var(--font-playfair);
+  --font-sans:    var(--font-dm-sans);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-navy);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
