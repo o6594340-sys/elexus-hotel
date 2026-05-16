@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import BottomNav from "../components/BottomNav";
+import BackButton from "../components/BackButton";
 import RequestToast from "../components/RequestToast";
 
 const SPA_TREATMENTS = [
@@ -58,6 +59,7 @@ export default function SpaPage() {
       <div className="relative h-52 shrink-0 overflow-hidden">
         <Image src="/spa.jpg" alt="Spa & Wellness" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/20 via-transparent to-[#0c1824]/65" />
+        <BackButton />
         <div className="absolute inset-0 flex flex-col justify-end p-5">
           <span className="text-[10px] uppercase tracking-widest text-[var(--color-gold)] mb-1">Wellness Centre</span>
           <h1 className="text-[28px] text-white leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>

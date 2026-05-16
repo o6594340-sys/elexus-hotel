@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import BottomNav from "../components/BottomNav";
+import BackButton from "../components/BackButton";
 
 const VENUES = [
   {
@@ -73,6 +74,7 @@ export default function MicePage() {
       <div className="relative h-52 shrink-0 overflow-hidden">
         <Image src="/conference-room.jpg" alt="MICE & Events" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/30 via-transparent to-[#0c1824]/70" />
+        <BackButton />
         <div className="absolute inset-0 flex flex-col justify-end p-5">
           <span className="text-[10px] uppercase tracking-widest text-[var(--color-gold)] mb-1">Meetings & Events</span>
           <h1 className="text-[28px] text-white leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>

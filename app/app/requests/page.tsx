@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import BottomNav from "../components/BottomNav";
+import BackButton from "../components/BackButton";
 import { supabase, type HotelRequest, type RequestStatus } from "../../lib/supabase";
 
 const HOTEL_ID = "elexus";
@@ -93,7 +94,8 @@ export default function RequestsPage() {
   return (
     <div className="flex flex-col h-full max-w-md mx-auto bg-[var(--color-cream)] relative">
       {/* Header */}
-      <div className="bg-[var(--color-navy)] px-5 pt-10 pb-5 shrink-0">
+      <div className="relative bg-[var(--color-navy)] px-5 pt-10 pb-5 shrink-0">
+        <BackButton />
         <h1 className="text-[28px] text-white" style={{ fontFamily: "var(--font-playfair)" }}>
           Requests
         </h1>
