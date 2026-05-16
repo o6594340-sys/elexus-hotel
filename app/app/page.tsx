@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import BottomNav from "./components/BottomNav";
 import WifiModal from "./components/WifiModal";
+import SpaBookingSheet from "./components/SpaBookingSheet";
 import RequestToast from "./components/RequestToast";
 
 const SCHEDULE = [
@@ -32,16 +33,16 @@ const ANNOUNCEMENTS = [
   },
 ];
 
-type RequestType = "towels" | "spa" | "reception" | null;
+type RequestType = "towels" | "reception" | null;
 
 const REQUEST_LABELS: Record<NonNullable<RequestType>, string> = {
   towels: "Extra Towels",
-  spa: "Spa Appointment",
   reception: "Reception",
 };
 
 export default function Home() {
   const [wifiOpen, setWifiOpen] = useState(false);
+  const [spaOpen, setSpaOpen] = useState(false);
   const [sentRequest, setSentRequest] = useState<RequestType>(null);
 
   function handleRequest(type: NonNullable<RequestType>) {
@@ -106,7 +107,7 @@ export default function Home() {
             <ActionButton
               icon={<SpaIcon />}
               label="Spa"
-              onClick={() => handleRequest("spa")}
+              onClick={() => setSpaOpen(true)}
             />
             <ActionButton
               icon={<WifiIcon />}
@@ -220,6 +221,9 @@ export default function Home() {
 
       {/* Wi-Fi modal */}
       <WifiModal open={wifiOpen} onClose={() => setWifiOpen(false)} />
+
+      {/* Spa booking sheet */}
+      <SpaBookingSheet open={spaOpen} onClose={() => setSpaOpen(false)} />
 
       {/* Request toast */}
       {sentRequest && (
