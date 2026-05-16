@@ -54,11 +54,19 @@ PWA-приложение для гостей отеля (Hotel Guest Experience 
 - Расписание — timeline с временем слева
 
 **Состояние на май 2026:**
-- ✅ Главный экран (header, action buttons, расписание, анонсы)
-- ✅ Нижняя навигация с SVG-иконками
-- ✅ Wi-Fi bottom sheet модал
-- ⚠️ Hero с фото отеля — нужно добавить (сейчас plain navy)
-- ⚠️ Inline styles → нужно перенести в Tailwind-токены (white-label требует)
+- ✅ Главный экран (hero с фото, action buttons, расписание, анонсы)
+- ✅ Нижняя навигация с SVG-иконками — 6 вкладок: Home / Dining / Spa / Map / Events / Requests
+- ✅ Wi-Fi bottom sheet модал (role=dialog, Escape, backdrop)
+- ✅ SPA кнопка — bottom sheet с 6 процедурами, ценами, выбором дня/времени
+- ✅ Рестораны / Бары / Что включено (app/dining/page.tsx)
+- ✅ Спа — описание, цены, кнопка записи (app/spa/page.tsx)
+- ✅ Карта отеля — 5 зон, SVG-иконки (app/map/page.tsx)
+- ✅ MICE-страница — generic white-label, 3 venue, 6 услуг (app/mice/page.tsx)
+- ✅ Запросы гостя — Supabase realtime, история, статусы
+- ✅ Staff Dashboard /admin — real-time, Accept/Complete
+- ✅ PWA манифест + иконки 192/512px
+- ✅ Задеплоено на Railway: elexus-hotel-production.up.railway.app
+- ⚠️ Inline styles → нужно перенести в Tailwind-токены (white-label требует, P1)
 
 ## Архитектура
 
@@ -69,17 +77,23 @@ PWA-приложение для гостей отеля (Hotel Guest Experience 
 
 ## Приоритеты разработки
 
-**P0 (MVP — делаем сейчас):**
-- Action-first главный экран (кнопки: полотенца, спа, Wi-Fi, ресепшен)
-- Рестораны, что включено в пакет, спа, карта
-- Запросы гостя с историей и статусами
-- CMS с напоминаниями, шаблонами, алертом устаревания
-- PWA: offline cache + баннер "Add to Home Screen"
-- Мультиязычность RU/EN
+**P0 (MVP — ✅ ГОТОВО к демо):**
+- ✅ Action-first главный экран (кнопки: полотенца, спа, Wi-Fi, ресепшен)
+- ✅ SPA booking sheet с процедурами и ценами
+- ✅ Рестораны, что включено в пакет, спа, карта
+- ✅ MICE-страница (white-label, 3 venue)
+- ✅ Запросы гостя с историей и статусами (Supabase realtime)
+- ✅ Staff dashboard /admin
+- ✅ PWA манифест + иконки
+- ❌ PWA service worker / offline cache (некритично для демо)
+- ❌ Мультиязычность RU/EN (некритично для демо)
 
-**P1 (после MVP):**
-- MICE-модуль с live-программой
+**P1 (после демо):**
+- MICE event-specific content via CMS (программа, Wi-Fi, менеджер)
 - Push-уведомления
+- Мультиязычность RU/EN (next-intl v4)
+- Inline styles → Tailwind-токены (white-label)
+- CMS с напоминаниями, шаблонами, алертом устаревания
 - FAQ, расписание анимации
 - ROI-калькулятор в CMS
 
@@ -133,9 +147,14 @@ PWA-приложение для гостей отеля (Hotel Guest Experience 
 - **Frontend-разработчик:** Code 4 / Performance 5 / Accessibility 3 из 10
 - **Продакт-менеджер:** demo-ready для разговора, НЕ для подписания
 
-**Топ-5 задач до демо:**
-1. Подключить Supabase для requests (real-time — demo-blocker)
-2. Hero с фото отеля на главном экране (самый большой WOW)
-3. Одна MICE-страница захардкоженная (закрывает gap стратегии)
-4. Заменить inline hex на Tailwind-токены (white-label требует)
-5. Wi-Fi модал → настоящий dialog (role, focus trap, Escape)
+**Топ-5 задач до демо — все выполнены ✅:**
+1. ✅ Supabase realtime для requests (demo-blocker)
+2. ✅ Hero с фото отеля на главном экране
+3. ✅ MICE-страница white-label
+4. ✅ Wi-Fi модал → настоящий dialog (role, Escape, backdrop)
+5. ✅ SPA кнопка → booking sheet с процедурами и ценами
+
+**Ссылки для демо:**
+- Гость (телефон): https://elexus-hotel-production.up.railway.app
+- Персонал (ноутбук): https://elexus-hotel-production.up.railway.app/admin
+- Очистить данные перед демо: `DELETE FROM requests;` в Supabase SQL Editor

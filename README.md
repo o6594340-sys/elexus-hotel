@@ -68,7 +68,7 @@ PWA-приложение для гостей и MICE-делегатов отел
 | Frontend / PWA | Next.js 16 + Tailwind CSS v4 + TypeScript |
 | Backend / БД | Supabase (realtime, auth, RLS) |
 | Push | Web Push API + WhatsApp Business API |
-| Хостинг | Vercel (авто-деплой из GitHub) |
+| Хостинг | Railway (авто-деплой из GitHub) |
 | i18n | next-intl v4 |
 | Шрифты | Playfair Display + DM Sans (next/font/google) |
 | Аналитика | Plausible |
@@ -107,16 +107,41 @@ regnum.stayguide.app/       — guest app Regnum Carya
 
 ---
 
+## Статус (май 2026)
+
+**MVP готов к демо.** Задеплоено на Railway.
+
+| Экран / Функция | Статус |
+|---|---|
+| Главный экран — hero, action buttons, расписание, анонсы | ✅ |
+| SPA кнопка — bottom sheet с процедурами, ценами, бронированием | ✅ |
+| Wi-Fi модал | ✅ |
+| Рестораны / Бары / Что включено | ✅ |
+| Спа — описание, цены, запись | ✅ |
+| Карта отеля | ✅ |
+| MICE-страница (white-label, 3 venue) | ✅ |
+| Запросы гостя — Supabase realtime | ✅ |
+| Staff Dashboard /admin | ✅ |
+| PWA манифест + иконки | ✅ |
+| Мультиязычность RU/EN | ❌ P1 |
+| PWA service worker / offline | ❌ P1 |
+
+**Ссылки:**
+- Гость: https://elexus-hotel-production.up.railway.app
+- Персонал: https://elexus-hotel-production.up.railway.app/admin
+
+---
+
 ## Этапы разработки
 
-| Этап | Что | Срок |
+| Этап | Что | Статус |
 |---|---|---|
-| 0 | Supabase + Next.js + Vercel, тестовые данные Elexus | 1 нед |
-| 1 | MVP Guest App (action экран, рестораны, запросы, PWA) | 2–3 нед |
-| 2 | CMS (редактирование, напоминания, шаблоны, алерт устаревания) | 1 нед |
-| 3 | Демо для выставки (данные Elexus + сценарий) | параллельно |
-| 4 | MICE-модуль (live-программа, push, объявления) | 2 нед |
-| 5 | Push + аналитика + ROI-калькулятор | 1 нед |
+| 0 | Supabase + Next.js + Railway, тестовые данные Elexus | ✅ |
+| 1 | MVP Guest App (action экран, рестораны, запросы, PWA) | ✅ |
+| 2 | CMS (редактирование, напоминания, шаблоны, алерт устаревания) | P1 |
+| 3 | Демо для выставки (данные Elexus + сценарий) | ✅ |
+| 4 | MICE-модуль (live-программа, push, объявления) | P1 |
+| 5 | Push + аналитика + ROI-калькулятор | P1 |
 
 ---
 
