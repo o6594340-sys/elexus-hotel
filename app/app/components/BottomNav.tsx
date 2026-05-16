@@ -7,7 +7,7 @@ const NAV_ITEMS = [
   { href: "/",        label: "Home",     icon: HomeIcon },
   { href: "/dining",  label: "Dining",   icon: DiningIcon },
   { href: "/spa",     label: "Spa",      icon: SpaIcon },
-  { href: "/map",     label: "Map",      icon: MapIcon },
+  { href: "/mice",    label: "Events",   icon: MiceIcon },
   { href: "/requests",label: "Requests", icon: RequestsIcon },
 ];
 
@@ -76,6 +76,18 @@ function MapIcon({ active }: { active: boolean }) {
       <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
       <line x1="9" y1="3" x2="9" y2="18" />
       <line x1="15" y1="6" x2="15" y2="21" />
+    </svg>
+  );
+}
+
+function MiceIcon({ active }: { active: boolean }) {
+  const c = active ? "var(--color-gold)" : "var(--color-muted)";
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <path d="M8 21h8" />
+      <path d="M12 17v4" />
+      <polygon points="10 9 15 12 10 15 10 9" />
     </svg>
   );
 }
