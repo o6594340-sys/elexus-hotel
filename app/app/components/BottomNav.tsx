@@ -23,7 +23,7 @@ export default function BottomNav() {
           <Link
             key={href}
             href={href}
-            className="flex-1 flex flex-col items-center py-2.5 gap-1"
+            className="flex-1 min-w-0 flex flex-col items-center py-2.5 gap-1 overflow-hidden"
           >
             <Icon active={active} />
             <span
