@@ -58,6 +58,7 @@ PWA-приложение для гостей отеля (Hotel Guest Experience 
 - ✅ Нижняя навигация с SVG-иконками — 6 вкладок: Home / Dining / Spa / Map / Events / Requests
 - ✅ Wi-Fi bottom sheet модал (role=dialog, Escape, backdrop)
 - ✅ SPA кнопка — bottom sheet с 6 процедурами, ценами, выбором дня/времени
+- ✅ Кнопка «Назад» на всех страницах (BackButton компонент, левый верхний угол)
 - ✅ Рестораны / Бары / Что включено (app/dining/page.tsx)
 - ✅ Спа — описание, цены, кнопка записи (app/spa/page.tsx)
 - ✅ Карта отеля — 5 зон, SVG-иконки (app/map/page.tsx)
@@ -65,6 +66,7 @@ PWA-приложение для гостей отеля (Hotel Guest Experience 
 - ✅ Запросы гостя — Supabase realtime, история, статусы
 - ✅ Staff Dashboard /admin — real-time, Accept/Complete
 - ✅ PWA манифест + иконки 192/512px
+- ✅ iPhone safe area: viewportFit=cover, BottomNav safe-area-inset-bottom, overflow-x hidden
 - ✅ Задеплоено на Railway: elexus-hotel-production.up.railway.app
 - ⚠️ Inline styles → нужно перенести в Tailwind-токены (white-label требует, P1)
 

@@ -116,6 +116,8 @@ regnum.stayguide.app/       — guest app Regnum Carya
 | Главный экран — hero, action buttons, расписание, анонсы | ✅ |
 | SPA кнопка — bottom sheet с процедурами, ценами, бронированием | ✅ |
 | Wi-Fi модал | ✅ |
+| Кнопка «Назад» на всех страницах (PWA-навигация) | ✅ |
+| iPhone safe area — BottomNav + overflow fix | ✅ |
 | Рестораны / Бары / Что включено | ✅ |
 | Спа — описание, цены, запись | ✅ |
 | Карта отеля | ✅ |
