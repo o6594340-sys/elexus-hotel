@@ -8,28 +8,36 @@ import SpaBookingSheet from "./components/SpaBookingSheet";
 import RequestToast from "./components/RequestToast";
 
 const SCHEDULE = [
-  { time: "07:00", title: "Breakfast", place: "Main Restaurant" },
-  { time: "10:00", title: "Aqua Park Opens", place: "Outdoor Area" },
-  { time: "11:00", title: "Beach Volleyball", place: "Beach" },
-  { time: "13:00", title: "Lunch", place: "Main Restaurant & Beach Bar" },
-  { time: "15:00", title: "Pool Animation", place: "Main Pool" },
-  { time: "19:00", title: "Sunset Cocktails", place: "Sky Bar" },
-  { time: "21:00", title: "Dinner", place: "Main Restaurant" },
-  { time: "22:30", title: "Evening Show", place: "Amphitheatre" },
+  { time: "07:00", title: "Breakfast",              place: "Meyan Ocakbaşı · Reflection" },
+  { time: "09:00", title: "Morning Yoga",            place: "Beach Terrace" },
+  { time: "10:00", title: "Aqua Park Opens",         place: "Outdoor Area" },
+  { time: "11:30", title: "Beach Volleyball",        place: "Private Beach" },
+  { time: "13:00", title: "Lunch",                   place: "Meyan Ocakbaşı · Leaf" },
+  { time: "15:00", title: "Pool Games & Animation",  place: "Main Pool" },
+  { time: "17:00", title: "Happy Hour",              place: "Mia Beach Club" },
+  { time: "19:00", title: "Dinner",                  place: "Meyan Ocakbaşı" },
+  { time: "21:00", title: "Live Music",              place: "Lobby Bar" },
+  { time: "22:30", title: "Evening Show",            place: "Amphitheatre" },
 ];
 
 const ANNOUNCEMENTS = [
   {
     id: 1,
-    title: "Pool Bar Happy Hour",
-    body: "Today 17:00–19:00 — 2 cocktails for the price of 1. All inclusive guests included.",
-    badge: "Today",
+    title: "Concert — Ayta Sözerı",
+    body: "12 June at the Amphitheatre. One of Turkey's most beloved voices. Reservations: +90 533 830 66 66.",
+    badge: "12 Jun",
   },
   {
     id: 2,
-    title: "Spa Special Offer",
-    body: "Book any treatment before Sunday and get a 20% discount. Available at the Wellness Centre.",
+    title: "Zoya Spa — Summer Offer",
+    body: "Book any treatment this week and receive a complimentary hammam session. Limited availability.",
     badge: "Offer",
+  },
+  {
+    id: 3,
+    title: "Happy Hour at Mia Beach Club",
+    body: "Every day 17:00–19:00 — selected cocktails at half price. Direct on the beach.",
+    badge: "Daily",
   },
 ];
 

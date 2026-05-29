@@ -5,6 +5,16 @@ import { useState } from "react";
 import BottomNav from "../components/BottomNav";
 import BackButton from "../components/BackButton";
 
+const CONCERTS = [
+  { date: "12 Jun",    day: "Fri", artist: "Ayta Sözerı",   genre: "Pop" },
+  { date: "27 Jun",    day: "Sat", artist: "Ebru Gündeş",   genre: "Pop" },
+  { date: "11 Jul",    day: "Sat", artist: "Koray Avcı",    genre: "Pop" },
+  { date: "25 Jul",    day: "Fri", artist: "Ebru Gündeş",   genre: "Pop" },
+  { date: "8 Aug",     day: "Sat", artist: "Candan Erçetin", genre: "Pop" },
+  { date: "29 Aug",    day: "Sat", artist: "Ebru Gündeş",   genre: "Pop" },
+  { date: "6 Nov",     day: "Fri", artist: "Ayta Sözerı",   genre: "Pop" },
+];
+
 const VENUES = [
   {
     name: "Congress Hall",
@@ -99,6 +109,28 @@ export default function MicePage() {
               <p className="text-[10px] text-[var(--color-muted)] mt-0.5 leading-tight">{s.label}</p>
             </div>
           ))}
+        </div>
+
+        {/* Concerts */}
+        <div className="px-4 pt-5">
+          <p className="text-[10px] uppercase tracking-widest text-[var(--color-muted)] mb-3">Concerts 2026</p>
+          <div className="bg-white rounded-xl overflow-hidden border border-[var(--color-navy)]/6 shadow-sm shadow-[var(--color-navy)]/5">
+            {CONCERTS.map((c, i) => (
+              <div key={i} className="flex items-center gap-3 px-4 py-3 border-b border-[var(--color-navy)]/6 last:border-0">
+                <div className="w-12 shrink-0 text-center">
+                  <p className="text-[13px] font-semibold text-[var(--color-navy)] tabular-nums leading-tight">{c.date}</p>
+                  <p className="text-[10px] text-[var(--color-muted)]">{c.day}</p>
+                </div>
+                <div className="w-px h-8 bg-[var(--color-navy)]/10 shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-[14px] font-medium text-[var(--color-navy)] truncate">{c.artist}</p>
+                  <p className="text-[11px] text-[var(--color-muted)]">{c.genre}</p>
+                </div>
+                <MicIcon />
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] text-[var(--color-muted)] mt-2 px-1">Reservations: +90 533 830 66 66</p>
         </div>
 
         {/* Venue selector */}
@@ -232,6 +264,9 @@ export default function MicePage() {
   );
 }
 
+function MicIcon() {
+  return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>;
+}
 function CateringIcon()  { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>; }
 function AvIcon()        { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><polygon points="10 9 15 12 10 15 10 9"/></svg>; }
 function TranslateIcon() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg>; }

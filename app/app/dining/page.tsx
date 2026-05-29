@@ -9,10 +9,10 @@ type Tab = "all" | "restaurants" | "bars" | "included";
 
 const RESTAURANTS = [
   {
-    id: "main",
-    name: "Main Restaurant",
+    id: "meyan",
+    name: "Meyan Ocakbaşı",
     cuisine: "International Buffet",
-    image: "/restaurant.jpg",
+    image: "/restaurant__meyan.webp",
     hours: [
       { label: "Breakfast", time: "07:00 – 10:00" },
       { label: "Lunch",     time: "13:00 – 15:00" },
@@ -20,31 +20,95 @@ const RESTAURANTS = [
     ],
     included: true,
     dresscode: null,
-    note: "Buffet with international and Turkish cuisine. Sea & pool views.",
+    note: "Local dishes, grills, and appetizers prepared with special Turkish recipes.",
   },
   {
     id: "reflection",
     name: "Reflection",
-    cuisine: "Turkish Cuisine",
-    image: "/restaurant.jpg",
+    cuisine: "International Buffet",
+    image: "/restaurant_reflection.webp",
     hours: [
-      { label: "Breakfast", time: "07:30 – 10:30" },
+      { label: "Breakfast", time: "07:00 – 10:00" },
+      { label: "Lunch",     time: "12:30 – 14:30" },
+      { label: "Dinner",    time: "19:00 – 22:00" },
     ],
     included: true,
     dresscode: null,
-    note: "Authentic Turkish breakfast and brunch.",
+    note: "Main buffet restaurant with world and Turkish cuisine across seven open buffet stations.",
   },
   {
-    id: "fish",
-    name: "Fish & Steak",
-    cuisine: "Seafood · Steakhouse",
-    image: "/restaurant.jpg",
+    id: "leaf",
+    name: "Leaf",
+    cuisine: "Open Buffet",
+    image: "/restaurant_leaf.webp",
+    hours: [
+      { label: "Afternoon", time: "15:00 – 17:00" },
+      { label: "Dinner",    time: "19:00 – 22:00" },
+    ],
+    included: true,
+    dresscode: null,
+    note: "Open buffet with light and fresh dishes served in the afternoon and evening.",
+  },
+  {
+    id: "snack",
+    name: "Snack Bar",
+    cuisine: "Light Bites · Pool Side",
+    image: "/restaurant_snack.webp",
+    hours: [
+      { label: "All day", time: "10:00 – 18:00" },
+    ],
+    included: true,
+    dresscode: null,
+    note: "Light snacks, sandwiches, and refreshments by the pool.",
+  },
+  {
+    id: "bistro24",
+    name: "Bistro 24",
+    cuisine: "All-Day Dining",
+    image: "/restaurant_bistro24.webp",
+    hours: [
+      { label: "Open", time: "24 hours" },
+    ],
+    included: true,
+    dresscode: null,
+    note: "International cuisine around the clock — rich menu and sea terrace views.",
+  },
+  {
+    id: "myoga",
+    name: "Myoga",
+    cuisine: "Far East · Asian",
+    image: "/restaurant_myoga.webp",
     hours: [
       { label: "Dinner", time: "19:00 – 23:00" },
     ],
     included: false,
     dresscode: "Smart casual",
-    note: "Reservation required. Extra charge applies.",
+    note: "Exotic Far Eastern and Asian flavours. Reservation required.",
+  },
+  {
+    id: "kaluga",
+    name: "Kaluga",
+    cuisine: "Seafood · À la carte",
+    image: "/restaurant_kaluga.webp",
+    hours: [
+      { label: "Dinner", time: "19:00 – 23:00" },
+    ],
+    included: false,
+    dresscode: "Smart casual",
+    note: "Fresh Mediterranean seafood in a distinctive à la carte setting. Reservation required.",
+  },
+  {
+    id: "cannoli",
+    name: "Cannoli Patisserie",
+    cuisine: "Italian · Café · Pastries",
+    image: "/restaurant_cannoli-patisserie.webp",
+    hours: [
+      { label: "Morning", time: "09:00 – 12:00" },
+      { label: "Evening", time: "15:00 – 22:00" },
+    ],
+    included: false,
+    dresscode: null,
+    note: "Luxury Italian-style patisserie with artisan pastries and premium coffee.",
   },
 ];
 
@@ -54,28 +118,35 @@ const BARS = [
     name: "Pool Bar",
     hours: "10:00 – 19:00",
     included: false,
-    note: "Cold drinks, cocktails, and light snacks by the main pool.",
+    note: "Cold drinks and cocktails in the comfortable pool-side setting.",
   },
   {
-    id: "beach-bar",
-    name: "Beach Bar",
+    id: "mia-bar",
+    name: "Mia Beach Club",
     hours: "10:00 – 18:00",
     included: false,
-    note: "Refreshments at the private beach. Sea views.",
+    note: "Beachside bar — drinks and snacks in the glow of the Mediterranean sun.",
+  },
+  {
+    id: "deep-bar",
+    name: "Deep Bar",
+    hours: "18:00 – 01:00",
+    included: false,
+    note: "On the pier, right above the sea. Cocktails with panoramic sunset views.",
   },
   {
     id: "lobby-bar",
     name: "Lobby Bar",
     hours: "09:00 – 00:00",
     included: false,
-    note: "Coffee, cocktails, and evening drinks in the main lobby.",
+    note: "Rich beverage menu in the main lobby. Cool off at the hottest hours.",
   },
   {
-    id: "sky-bar",
-    name: "Sky Bar",
-    hours: "18:00 – 01:00",
+    id: "lounge-bar",
+    name: "Lounge Bar",
+    hours: "20:00 – 02:00",
     included: false,
-    note: "Sunset cocktails and evening entertainment. Panoramic views.",
+    note: "Art Deco interior with live performances and evening entertainment.",
   },
 ];
 
@@ -124,7 +195,7 @@ export default function DiningPage() {
     <div className="flex flex-col h-full max-w-md mx-auto bg-[var(--color-cream)] relative">
       {/* Header */}
       <div className="relative h-44 shrink-0 overflow-hidden">
-        <Image src="/restaurant.jpg" alt="Dining" fill className="object-cover" priority />
+        <Image src="/restaurant__meyan.webp" alt="Dining" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/25 via-transparent to-[#0c1824]/60" />
         <BackButton />
         <div className="absolute inset-0 flex flex-col justify-end p-5">
@@ -182,9 +253,9 @@ export default function DiningPage() {
           <div className="pt-5">
             <p className="text-[10px] uppercase tracking-widest text-[var(--color-muted)] mb-3">What's Included</p>
             <div className="bg-[var(--color-navy)]/5 rounded-xl p-3 mb-4" style={{ borderLeft: "3px solid var(--color-navy)", paddingLeft: "12px" }}>
-              <p className="text-[13px] text-[var(--color-navy)] font-medium">Full Board Plus</p>
+              <p className="text-[13px] text-[var(--color-navy)] font-medium">All Inclusive Plus</p>
               <p className="text-[12px] text-[var(--color-muted)] mt-0.5 leading-relaxed">
-                Breakfast, lunch and dinner are included in the Main Restaurant. Most drinks at bars and all spa treatments are charged separately.
+                Breakfast, lunch and dinner are included. Most drinks at bars and all spa treatments are charged separately.
               </p>
             </div>
             {INCLUDED_ITEMS.map((section) => (

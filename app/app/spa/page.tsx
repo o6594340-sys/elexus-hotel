@@ -63,7 +63,7 @@ export default function SpaPage() {
         <div className="absolute inset-0 flex flex-col justify-end p-5">
           <span className="text-[10px] uppercase tracking-widest text-[var(--color-gold)] mb-1">Wellness Centre</span>
           <h1 className="text-[28px] text-white leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>
-            Spa & Wellness
+            Zoya Spa & Wellness
           </h1>
           <p className="text-[13px] text-white/70 mt-0.5">4 500 m² · Panoramic sea view</p>
         </div>

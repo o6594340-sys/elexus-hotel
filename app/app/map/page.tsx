@@ -11,7 +11,7 @@ const AREAS: { zone: string; color: string; places: Place[] }[] = [
     color: "#0c1824",
     places: [
       { name: "Reception & Concierge",  floor: "Ground",   hours: "24/7",             Icon: KeyIcon },
-      { name: "Main Restaurant",         floor: "Ground",   hours: "07:00–22:00",      Icon: DiningIcon },
+      { name: "Meyan Ocakbaşı",            floor: "Ground",   hours: "07:00–22:00",      Icon: DiningIcon },
       { name: "Reflection Restaurant",   floor: "Ground",   hours: "07:30–10:30",      Icon: TeaIcon },
       { name: "Lobby Bar",               floor: "Ground",   hours: "09:00–00:00",      Icon: CocktailIcon },
       { name: "Casino",                  floor: "Ground",   hours: "24/7",             Icon: CasinoIcon },
@@ -21,7 +21,7 @@ const AREAS: { zone: string; color: string; places: Place[] }[] = [
     zone: "Wellness",
     color: "#5b8fa8",
     places: [
-      { name: "Spa & Wellness Centre",   floor: "Level 1",  hours: "08:00–21:00",      Icon: SpaIcon },
+      { name: "Zoya Spa & Wellness",      floor: "Level 1",  hours: "08:00–21:00",      Icon: SpaIcon },
       { name: "Turkish Hammam",           floor: "Level 1",  hours: "08:00–21:00",      Icon: HammamIcon },
       { name: "Fitness Centre",           floor: "Level 1",  hours: "07:00–22:00",      Icon: FitnessIcon },
       { name: "Indoor Pool (Olympic)",    floor: "Level 1",  hours: "08:00–20:00",      Icon: PoolIcon },
@@ -36,7 +36,8 @@ const AREAS: { zone: string; color: string; places: Place[] }[] = [
       { name: "Aqua Park",                floor: "Terrace",  hours: "10:00–18:00",      Icon: WaterslideIcon },
       { name: "Pool Bar",                 floor: "Terrace",  hours: "10:00–19:00",      Icon: CocktailIcon },
       { name: "Private Beach (1.3 km)",   floor: "Sea level", hours: "08:00–19:00",     Icon: BeachIcon },
-      { name: "Beach Bar",                floor: "Sea level", hours: "10:00–18:00",     Icon: CocktailIcon },
+      { name: "Mia Beach Club",           floor: "Sea level", hours: "10:00–18:00",     Icon: CocktailIcon },
+      { name: "Deep Bar",                 floor: "Pier",      hours: "18:00–01:00",     Icon: CocktailIcon },
     ],
   },
   {
@@ -44,7 +45,7 @@ const AREAS: { zone: string; color: string; places: Place[] }[] = [
     color: "#8b6914",
     places: [
       { name: "Amphitheatre",             floor: "Terrace",  hours: "Evening shows",    Icon: StageIcon },
-      { name: "Sky Bar",                  floor: "Rooftop",  hours: "18:00–01:00",      Icon: StarIcon },
+      { name: "Lounge Bar",               floor: "Ground",   hours: "20:00–02:00",      Icon: CocktailIcon },
       { name: "Mini Club (Kids)",         floor: "Ground",   hours: "09:00–18:00",      Icon: KidsIcon },
       { name: "Games Room",               floor: "Ground",   hours: "10:00–22:00",      Icon: GamesIcon },
     ],
