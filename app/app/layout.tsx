@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "Elexus Hotel — Guest App",
   description: "Your digital concierge at Elexus Hotel & Resort",
   manifest: "/manifest.json",
+  icons: {
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export const viewport: Viewport = {

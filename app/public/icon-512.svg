@@ -1,4 +1,7 @@
 <svg xmlns='http://www.w3.org/2000/svg' width='512' height='512'>
-  <rect width='512' height='512' rx='80' fill='#0c1824'/>
-  <text x='256' y='350' font-family='Georgia,serif' font-size='300' font-weight='bold' fill='#c9a96e' text-anchor='middle'>E</text>
+  <rect width='512' height='512' fill='#0c1824'/>
+  <line x1='178' y1='128' x2='334' y2='128' stroke='#c9a96e' stroke-width='2' opacity='0.6'/>
+  <text x='256' y='318' font-family='Georgia,serif' font-size='216' font-weight='bold' fill='#c9a96e' text-anchor='middle'>E</text>
+  <text x='256' y='374' font-family='Georgia,serif' font-size='40' fill='#c9a96e' text-anchor='middle' letter-spacing='14'>ELEXUS</text>
+  <line x1='178' y1='402' x2='334' y2='402' stroke='#c9a96e' stroke-width='2' opacity='0.6'/>
 </svg>
