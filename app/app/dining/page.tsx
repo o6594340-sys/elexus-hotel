@@ -155,35 +155,39 @@ const INCLUDED_ITEMS = [
     category: "Meals",
     icon: IncludedFoodIcon,
     items: [
-      { label: "Breakfast at Main Restaurant",  included: true },
-      { label: "Lunch at Main Restaurant",       included: true },
-      { label: "Dinner at Main Restaurant",      included: true },
-      { label: "Reflection breakfast",           included: true },
-      { label: "Fish & Steak Restaurant",        included: false, note: "Extra charge" },
+      { label: "Breakfast — Meyan Ocakbaşı & Reflection", included: true },
+      { label: "Lunch — Meyan Ocakbaşı & Leaf",           included: true },
+      { label: "Dinner — Meyan Ocakbaşı",                 included: true },
+      { label: "Afternoon tea & snacks — Leaf",           included: true },
+      { label: "Late night snacks — Bistro 24",           included: true },
+      { label: "Myoga, Kaluga, Cannoli Patisserie",        included: false, note: "Extra charge" },
     ],
   },
   {
     category: "Drinks",
     icon: IncludedDrinksIcon,
     items: [
-      { label: "Non-alcoholic drinks at meals",  included: true },
-      { label: "Water throughout the day",       included: true },
-      { label: "Alcohol at pool & beach bars",   included: false, note: "Extra charge" },
-      { label: "Cocktails & spirits",            included: false, note: "Extra charge" },
+      { label: "Non-alcoholic drinks at all meals",       included: true },
+      { label: "Local alcoholic drinks at meals",         included: true },
+      { label: "Soft drinks throughout the day",          included: true },
+      { label: "Cocktails & premium spirits",             included: false, note: "Extra charge" },
+      { label: "Minibar",                                 included: false, note: "Extra charge" },
     ],
   },
   {
-    category: "Facilities",
+    category: "Facilities & Activities",
     icon: IncludedPoolIcon,
     items: [
-      { label: "Outdoor pools",                  included: true },
-      { label: "Indoor pools",                   included: true },
-      { label: "Aqua Park",                      included: true },
-      { label: "Private beach & sun loungers",   included: true },
-      { label: "Fitness centre",                 included: true },
-      { label: "Evening animation & shows",      included: true },
-      { label: "Spa treatments",                 included: false, note: "Extra charge" },
-      { label: "Water sports",                   included: false, note: "Extra charge" },
+      { label: "7 outdoor pools & indoor pool",           included: true },
+      { label: "Aqua Park",                               included: true },
+      { label: "Private beach & sun loungers",            included: true },
+      { label: "Fitness centre",                          included: true },
+      { label: "Beach volleyball & tennis",               included: true },
+      { label: "Kids' Mini Club",                         included: true },
+      { label: "Evening shows & live concerts",           included: true },
+      { label: "Zoya Spa treatments",                     included: false, note: "Extra charge" },
+      { label: "Motorised water sports",                  included: false, note: "Extra charge" },
+      { label: "Casino",                                  included: false, note: "Extra charge" },
     ],
   },
 ];
@@ -255,7 +259,7 @@ export default function DiningPage() {
             <div className="bg-[var(--color-navy)]/5 rounded-xl p-3 mb-4" style={{ borderLeft: "3px solid var(--color-navy)", paddingLeft: "12px" }}>
               <p className="text-[13px] text-[var(--color-navy)] font-medium">All Inclusive Plus</p>
               <p className="text-[12px] text-[var(--color-muted)] mt-0.5 leading-relaxed">
-                Breakfast, lunch and dinner are included. Most drinks at bars and all spa treatments are charged separately.
+                Meals at Meyan Ocakbaşı, Reflection, Leaf and Bistro 24 are included. Local drinks at meals included. Spa, à la carte restaurants and premium spirits are charged separately.
               </p>
             </div>
             {INCLUDED_ITEMS.map((section) => (
