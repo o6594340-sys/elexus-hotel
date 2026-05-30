@@ -136,12 +136,9 @@ export default function MicePage() {
               <button
                 key={i}
                 onClick={() => setActiveVenue(i)}
-                className="shrink-0 px-3 py-1.5 rounded-full text-[11px] font-medium transition-colors cursor-pointer"
-                style={{
-                  background: activeVenue === i ? "var(--color-navy)" : "white",
-                  color: activeVenue === i ? "white" : "var(--color-muted)",
-                  border: activeVenue === i ? "none" : "1px solid rgba(12,24,36,0.1)",
-                }}
+                className={`shrink-0 px-3 py-1.5 rounded-full text-[11px] font-medium transition-colors cursor-pointer ${
+                  activeVenue === i ? "bg-navy text-white" : "bg-white text-muted border border-navy/10"
+                }`}
               >
                 {v.name}
               </button>
@@ -217,7 +214,7 @@ export default function MicePage() {
         {/* CTA */}
         <div className="px-4 pt-5 pb-2">
           <div className="bg-[var(--color-navy)] rounded-xl p-5">
-            <p className="text-[16px] font-semibold text-white mb-1" style={{ fontFamily: "var(--font-playfair)" }}>
+            <p className="font-display text-[16px] font-semibold text-white mb-1">
               Plan your event with us
             </p>
             <p className="text-[12px] text-white/60 mb-4 leading-relaxed">
@@ -241,8 +238,7 @@ export default function MicePage() {
         <div
           role="status"
           aria-live="polite"
-          className="absolute bottom-24 left-4 right-4 bg-[var(--color-navy)] text-white rounded-xl px-4 py-3.5 flex items-center gap-3 shadow-lg"
-          style={{ animation: "fadeSlideUp 0.25s ease" }}
+          className="animate-fade-slide-up absolute bottom-24 left-4 right-4 bg-[var(--color-navy)] text-white rounded-xl px-4 py-3.5 flex items-center gap-3 shadow-lg"
         >
           <div className="w-6 h-6 rounded-full bg-[var(--color-gold)]/20 flex items-center justify-center shrink-0">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

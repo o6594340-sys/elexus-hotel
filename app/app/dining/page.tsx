@@ -210,12 +210,9 @@ export default function DiningPage() {
           <button
             key={t}
             onClick={() => setTab(t)}
-            className="shrink-0 px-4 py-1.5 rounded-full text-[12px] font-medium uppercase tracking-wide transition-colors cursor-pointer"
-            style={{
-              background: tab === t ? "var(--color-navy)" : "white",
-              color: tab === t ? "white" : "var(--color-muted)",
-              border: tab === t ? "none" : "1px solid rgba(12,24,36,0.1)",
-            }}
+            className={`shrink-0 px-4 py-1.5 rounded-full text-[12px] font-medium uppercase tracking-wide transition-colors cursor-pointer ${
+              tab === t ? "bg-navy text-white" : "bg-white text-muted border border-navy/10"
+            }`}
           >
             {t === "included" ? "What's Included" : t.charAt(0).toUpperCase() + t.slice(1)}
           </button>
@@ -250,7 +247,7 @@ export default function DiningPage() {
         {(tab === "all" || tab === "included") && (
           <div className="pt-5">
             <p className="text-[10px] uppercase tracking-widest text-[var(--color-muted)] mb-3">What's Included</p>
-            <div className="bg-[var(--color-navy)]/5 rounded-xl p-3 mb-4" style={{ borderLeft: "3px solid var(--color-navy)", paddingLeft: "12px" }}>
+            <div className="bg-[var(--color-navy)]/5 rounded-xl p-3 mb-4 border-l-[3px] border-navy">
               <p className="text-[13px] text-[var(--color-navy)] font-medium">All Inclusive Plus</p>
               <p className="text-[12px] text-[var(--color-muted)] mt-0.5 leading-relaxed">
                 Meals at Meyan Ocakbaşı, Reflection, Leaf and Bistro 24 are included. Local drinks at meals included. Spa, à la carte restaurants and premium spirits are charged separately.

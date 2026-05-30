@@ -41,10 +41,7 @@ export default function WifiModal({ open, onClose }: Props) {
         {/* Handle */}
         <div className="w-10 h-1 bg-[var(--color-navy)]/15 rounded-full mx-auto mb-5" />
 
-        <h2
-          className="text-[22px] mb-5 text-[var(--color-navy)]"
-          style={{ fontFamily: "var(--font-playfair)" }}
-        >
+        <h2 className="font-display text-[22px] mb-5 text-[var(--color-navy)]">
           Wi-Fi Access
         </h2>
 

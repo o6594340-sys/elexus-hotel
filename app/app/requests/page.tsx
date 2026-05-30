@@ -96,7 +96,7 @@ export default function RequestsPage() {
       {/* Header */}
       <div className="relative bg-[var(--color-navy)] px-5 pt-10 pb-5 shrink-0">
         <BackButton />
-        <h1 className="text-[28px] text-white" style={{ fontFamily: "var(--font-playfair)" }}>
+        <h1 className="font-display text-[28px] text-white">
           Requests
         </h1>
         <p className="text-[13px] text-white/60 mt-0.5">Room 314 · Staff responds within 15 min</p>
@@ -208,8 +208,7 @@ export default function RequestsPage() {
         <div
           role="status"
           aria-live="polite"
-          className="absolute bottom-24 left-4 right-4 bg-[var(--color-navy)] text-white rounded-xl px-4 py-3.5 flex items-center gap-3 shadow-lg"
-          style={{ animation: "fadeSlideUp 0.25s ease" }}
+          className="animate-fade-slide-up absolute bottom-24 left-4 right-4 bg-[var(--color-navy)] text-white rounded-xl px-4 py-3.5 flex items-center gap-3 shadow-lg"
         >
           <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

@@ -80,7 +80,7 @@ export default function SpaBookingSheet({ open, onClose }: Props) {
 
         {step === "list" && (
           <div className="p-6">
-            <h2 className="text-[22px] mb-1 text-[var(--color-navy)]" style={{ fontFamily: "var(--font-playfair)" }}>
+            <h2 className="font-display text-[22px] mb-1 text-[var(--color-navy)]">
               Spa & Wellness
             </h2>
             <p className="text-[12px] text-[var(--color-muted)] mb-5">Select a treatment to request an appointment</p>
@@ -125,12 +125,9 @@ export default function SpaBookingSheet({ open, onClose }: Props) {
                 <button
                   key={d}
                   onClick={() => setDay(d)}
-                  className="flex-1 py-2.5 rounded-xl text-[13px] font-medium cursor-pointer transition-colors"
-                  style={{
-                    background: day === d ? "var(--color-navy)" : "transparent",
-                    color: day === d ? "white" : "var(--color-muted)",
-                    border: day === d ? "none" : "1px solid rgba(12,24,36,0.1)",
-                  }}
+                  className={`flex-1 py-2.5 rounded-xl text-[13px] font-medium cursor-pointer transition-colors ${
+                    day === d ? "bg-navy text-white" : "text-muted border border-navy/10"
+                  }`}
                 >
                   {d === "today" ? "Today" : "Tomorrow"}
                 </button>
@@ -143,16 +140,14 @@ export default function SpaBookingSheet({ open, onClose }: Props) {
                 <button
                   key={s.label}
                   onClick={() => setTimeSlot(s.label)}
-                  className="flex-1 py-2 px-1 rounded-xl text-center cursor-pointer transition-colors"
-                  style={{
-                    background: timeSlot === s.label ? "var(--color-navy)" : "transparent",
-                    border: timeSlot === s.label ? "none" : "1px solid rgba(12,24,36,0.1)",
-                  }}
+                  className={`flex-1 py-2 px-1 rounded-xl text-center cursor-pointer transition-colors ${
+                    timeSlot === s.label ? "bg-navy" : "border border-navy/10"
+                  }`}
                 >
-                  <p className="text-[12px] font-medium" style={{ color: timeSlot === s.label ? "white" : "var(--color-navy)" }}>
+                  <p className={`text-[12px] font-medium ${timeSlot === s.label ? "text-white" : "text-navy"}`}>
                     {s.label}
                   </p>
-                  <p className="text-[10px]" style={{ color: timeSlot === s.label ? "rgba(255,255,255,0.6)" : "var(--color-muted)" }}>
+                  <p className={`text-[10px] ${timeSlot === s.label ? "text-white/60" : "text-muted"}`}>
                     {s.sub}
                   </p>
                 </button>
@@ -170,8 +165,7 @@ export default function SpaBookingSheet({ open, onClose }: Props) {
             <button
               onClick={submit}
               disabled={!timeSlot || loading}
-              className="w-full py-3.5 rounded-xl text-[14px] font-semibold cursor-pointer transition-opacity active:opacity-80 disabled:opacity-40"
-              style={{ background: "var(--color-gold)", color: "var(--color-navy)" }}
+              className="w-full py-3.5 rounded-xl text-[14px] font-semibold cursor-pointer transition-opacity active:opacity-80 disabled:opacity-40 bg-gold text-navy"
             >
               {loading ? "Sending…" : "Request Appointment"}
             </button>
@@ -188,7 +182,7 @@ export default function SpaBookingSheet({ open, onClose }: Props) {
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            <h2 className="text-[20px] text-[var(--color-navy)] mb-2" style={{ fontFamily: "var(--font-playfair)" }}>
+            <h2 className="font-display text-[20px] text-[var(--color-navy)] mb-2">
               Request Sent
             </h2>
             <p className="text-[13px] text-[var(--color-muted)] mb-6 leading-relaxed">

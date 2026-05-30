@@ -27,8 +27,7 @@ export default function BottomNav() {
           >
             <Icon active={active} />
             <span
-              className="text-[10px] uppercase tracking-wide font-medium"
-              style={{ color: active ? "var(--color-gold)" : "var(--color-muted)" }}
+              className={`text-[10px] uppercase tracking-wide font-medium ${active ? "text-gold" : "text-muted"}`}
             >
               {label}
             </span>

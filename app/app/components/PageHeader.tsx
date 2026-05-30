@@ -20,7 +20,7 @@ export default function PageHeader({ src, alt, title, subtitle, label, height = 
         {label && (
           <span className="text-[10px] uppercase tracking-widest text-[var(--color-gold)] mb-1">{label}</span>
         )}
-        <h1 className="text-[28px] text-white leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>
+        <h1 className="font-display text-[28px] text-white leading-tight">
           {title}
         </h1>
         <p className="text-[13px] text-white/70 mt-0.5">{subtitle}</p>

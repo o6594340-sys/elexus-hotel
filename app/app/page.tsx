@@ -76,19 +76,13 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/30 via-transparent to-[#0c1824]/60" />
         <div className="absolute inset-0 flex flex-col justify-between p-5">
           <div className="flex items-center justify-between">
-            <span
-              className="text-[10px] uppercase tracking-widest text-[var(--color-gold)]"
-              style={{ fontFamily: "var(--font-dm-sans)" }}
-            >
+            <span className="font-sans text-[10px] uppercase tracking-widest text-[var(--color-gold)]">
               StayGuide
             </span>
             <span className="text-[10px] text-white/60">Room 314</span>
           </div>
           <div>
-            <h1
-              className="text-[28px] leading-tight text-white"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
+            <h1 className="font-display text-[28px] leading-tight text-white">
               Elexus Hotel
             </h1>
             <p className="text-[13px] text-white/70 mt-0.5">
