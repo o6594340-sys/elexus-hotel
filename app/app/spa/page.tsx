@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import BottomNav from "../components/BottomNav";
-import BackButton from "../components/BackButton";
+import PageHeader from "../components/PageHeader";
 import RequestToast from "../components/RequestToast";
 
 const SPA_TREATMENTS = [
@@ -55,19 +54,14 @@ export default function SpaPage() {
 
   return (
     <div className="flex flex-col h-full max-w-md mx-auto bg-[var(--color-cream)] relative">
-      {/* Header */}
-      <div className="relative h-52 shrink-0 overflow-hidden">
-        <Image src="/spa.jpg" alt="Spa & Wellness" fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/20 via-transparent to-[#0c1824]/65" />
-        <BackButton />
-        <div className="absolute inset-0 flex flex-col justify-end p-5">
-          <span className="text-[10px] uppercase tracking-widest text-[var(--color-gold)] mb-1">Wellness Centre</span>
-          <h1 className="text-[28px] text-white leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>
-            Zoya Spa & Wellness
-          </h1>
-          <p className="text-[13px] text-white/70 mt-0.5">4 500 m² · Panoramic sea view</p>
-        </div>
-      </div>
+      <PageHeader
+        src="/spa.jpg"
+        alt="Spa & Wellness"
+        title="Zoya Spa & Wellness"
+        subtitle="4 500 m² · Panoramic sea view"
+        label="Wellness Centre"
+        height="h-52"
+      />
 
       {/* Scroll content */}
       <div className="flex-1 overflow-y-auto pb-20">

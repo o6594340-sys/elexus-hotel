@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import BottomNav from "../components/BottomNav";
-import BackButton from "../components/BackButton";
+import PageHeader from "../components/PageHeader";
 
 const CONCERTS = [
   { date: "12 Jun",    day: "Fri", artist: "Ayta Sözerı",   genre: "Pop" },
@@ -80,19 +80,14 @@ export default function MicePage() {
   return (
     <div className="flex flex-col h-full max-w-md mx-auto bg-[var(--color-cream)] relative">
 
-      {/* Header */}
-      <div className="relative h-52 shrink-0 overflow-hidden">
-        <Image src="/conference-room.jpg" alt="MICE & Events" fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/30 via-transparent to-[#0c1824]/70" />
-        <BackButton />
-        <div className="absolute inset-0 flex flex-col justify-end p-5">
-          <span className="text-[10px] uppercase tracking-widest text-[var(--color-gold)] mb-1">Meetings & Events</span>
-          <h1 className="text-[28px] text-white leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>
-            MICE & Conferences
-          </h1>
-          <p className="text-[13px] text-white/70 mt-0.5">3 venues · Up to 1 200 guests · Full service</p>
-        </div>
-      </div>
+      <PageHeader
+        src="/conference-room.jpg"
+        alt="MICE & Events"
+        title="MICE & Conferences"
+        subtitle="3 venues · Up to 1 200 guests · Full service"
+        label="Meetings & Events"
+        height="h-52"
+      />
 
       <div className="flex-1 overflow-y-auto pb-20">
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
+import { useFocusTrap } from "../hooks/useFocusTrap";
 
 const TREATMENTS = [
   { name: "Swedish Massage",    duration: "60 min", price: "€60" },
@@ -24,6 +25,7 @@ interface Props {
 }
 
 export default function SpaBookingSheet({ open, onClose }: Props) {
+  const trapRef = useFocusTrap(open);
   const [step, setStep] = useState<"list" | "form" | "done">("list");
   const [selected, setSelected] = useState<typeof TREATMENTS[0] | null>(null);
   const [day, setDay] = useState<"today" | "tomorrow">("today");
@@ -71,7 +73,7 @@ export default function SpaBookingSheet({ open, onClose }: Props) {
   if (!open) return null;
 
   return (
-    <div role="dialog" aria-modal="true" aria-label="Spa booking" className="absolute inset-0 z-50">
+    <div ref={trapRef} role="dialog" aria-modal="true" aria-label="Spa booking" className="absolute inset-0 z-50">
       <div className="absolute inset-0 bg-[var(--color-navy)]/50 backdrop-blur-sm" onClick={onClose} />
       <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl">
         <div className="w-10 h-1 bg-[var(--color-navy)]/15 rounded-full mx-auto mt-4" />

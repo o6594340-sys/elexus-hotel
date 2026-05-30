@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import BottomNav from "../components/BottomNav";
-import BackButton from "../components/BackButton";
+import PageHeader from "../components/PageHeader";
 
 type Tab = "all" | "restaurants" | "bars" | "included";
 
@@ -197,18 +197,12 @@ export default function DiningPage() {
 
   return (
     <div className="flex flex-col h-full max-w-md mx-auto bg-[var(--color-cream)] relative">
-      {/* Header */}
-      <div className="relative h-44 shrink-0 overflow-hidden">
-        <Image src="/restaurant__meyan.webp" alt="Dining" fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/25 via-transparent to-[#0c1824]/60" />
-        <BackButton />
-        <div className="absolute inset-0 flex flex-col justify-end p-5">
-          <h1 className="text-[28px] text-white leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>
-            Dining
-          </h1>
-          <p className="text-[13px] text-white/70 mt-0.5">Restaurants, bars & what's included</p>
-        </div>
-      </div>
+      <PageHeader
+        src="/restaurant__meyan.webp"
+        alt="Dining"
+        title="Dining"
+        subtitle="Restaurants, bars & what's included"
+      />
 
       {/* Tabs */}
       <div className="flex gap-2 px-4 pt-4 pb-2 overflow-x-auto shrink-0">

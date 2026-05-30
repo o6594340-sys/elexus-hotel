@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useFocusTrap } from "../hooks/useFocusTrap";
 
 interface Props {
   open: boolean;
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export default function WifiModal({ open, onClose }: Props) {
+  const trapRef = useFocusTrap(open);
+
   useEffect(() => {
     if (!open) return;
     function onKeyDown(e: KeyboardEvent) {
@@ -21,6 +24,7 @@ export default function WifiModal({ open, onClose }: Props) {
 
   return (
     <div
+      ref={trapRef}
       role="dialog"
       aria-modal="true"
       aria-label="Wi-Fi details"
