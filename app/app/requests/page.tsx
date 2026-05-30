@@ -44,7 +44,7 @@ export default function RequestsPage() {
       .channel("requests-guest")
       .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "requests", filter: `hotel_id=eq.${HOTEL_ID}` },
+        { event: "*", schema: "public", table: "requests", filter: `hotel_id=eq.${HOTEL_ID}&room=eq.${ROOM}` },
         (payload) => {
           if (payload.eventType === "INSERT") {
             setRequests((prev) => [payload.new as HotelRequest, ...prev]);
@@ -61,14 +61,14 @@ export default function RequestsPage() {
   }, []);
 
   async function sendQuick(label: string) {
-    const { data } = await supabase.from("requests").insert({
+    const { error } = await supabase.from("requests").insert({
       hotel_id: HOTEL_ID,
       room: ROOM,
       type: label,
       detail: "Quick request",
       status: "new",
-    }).select().single();
-    if (data) {
+    });
+    if (!error) {
       setSent(label);
       setTimeout(() => setSent(null), 3000);
     }
@@ -76,14 +76,14 @@ export default function RequestsPage() {
 
   async function sendCustom() {
     if (!formText.trim()) return;
-    const { data } = await supabase.from("requests").insert({
+    const { error } = await supabase.from("requests").insert({
       hotel_id: HOTEL_ID,
       room: ROOM,
       type: "Custom request",
       detail: formText.trim(),
       status: "new",
-    }).select().single();
-    if (data) {
+    });
+    if (!error) {
       setFormText("");
       setShowForm(false);
       setSent("Your request");

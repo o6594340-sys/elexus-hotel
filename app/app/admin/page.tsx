@@ -47,8 +47,11 @@ export default function AdminPage() {
     const next = STATUS_META[req.status].next;
     if (!next) return;
     setUpdating(req.id);
-    await supabase.from("requests").update({ status: next }).eq("id", req.id);
-    setUpdating(null);
+    try {
+      await supabase.from("requests").update({ status: next }).eq("id", req.id);
+    } finally {
+      setUpdating(null);
+    }
   }
 
   const pending = requests.filter((r) => r.status !== "done");

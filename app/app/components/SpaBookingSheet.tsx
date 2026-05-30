@@ -53,16 +53,19 @@ export default function SpaBookingSheet({ open, onClose }: Props) {
   async function submit() {
     if (!selected || !timeSlot) return;
     setLoading(true);
-    const detail = `${selected.name} (${selected.duration}) | ${day === "today" ? "Today" : "Tomorrow"} | ${timeSlot}${notes ? ` | Notes: ${notes}` : ""}`;
-    await supabase.from("requests").insert({
-      hotel_id: "elexus",
-      room: "314",
-      type: "Spa Booking",
-      detail,
-      status: "new",
-    });
-    setLoading(false);
-    setStep("done");
+    try {
+      const detail = `${selected.name} (${selected.duration}) | ${day === "today" ? "Today" : "Tomorrow"} | ${timeSlot}${notes ? ` | Notes: ${notes}` : ""}`;
+      const { error } = await supabase.from("requests").insert({
+        hotel_id: "elexus",
+        room: "314",
+        type: "Spa Booking",
+        detail,
+        status: "new",
+      });
+      if (!error) setStep("done");
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (!open) return null;
