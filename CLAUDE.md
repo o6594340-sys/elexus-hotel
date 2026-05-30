@@ -56,19 +56,22 @@ PWA-приложение для гостей отеля (Hotel Guest Experience 
 **Состояние на май 2026:**
 - ✅ Главный экран (hero с фото, action buttons, расписание, анонсы)
 - ✅ Нижняя навигация с SVG-иконками — 6 вкладок: Home / Dining / Spa / Map / Events / Requests
-- ✅ Wi-Fi bottom sheet модал (role=dialog, Escape, backdrop)
-- ✅ SPA кнопка — bottom sheet с 6 процедурами, ценами, выбором дня/времени
+- ✅ Wi-Fi bottom sheet модал (role=dialog, Escape, backdrop, focus trap)
+- ✅ SPA кнопка — bottom sheet с процедурами, ценами, выбором дня/времени (focus trap, try/finally)
 - ✅ Кнопка «Назад» на всех страницах (BackButton компонент, левый верхний угол)
-- ✅ Рестораны / Бары / Что включено (app/dining/page.tsx)
+- ✅ Рестораны / Бары / Что включено (app/dining/page.tsx) — реальные фото ресторанов
 - ✅ Спа — описание, цены, кнопка записи (app/spa/page.tsx)
 - ✅ Карта отеля — 5 зон, SVG-иконки (app/map/page.tsx)
 - ✅ MICE-страница — generic white-label, 3 venue, 6 услуг (app/mice/page.tsx)
-- ✅ Запросы гостя — Supabase realtime, история, статусы
-- ✅ Staff Dashboard /admin — real-time, Accept/Complete
+- ✅ Запросы гостя — Supabase realtime, история, статусы (фильтр по room, error handling)
+- ✅ Staff Dashboard /admin — real-time, Accept/Complete (error handling)
 - ✅ PWA манифест + иконки 192/512px
 - ✅ iPhone safe area: viewportFit=cover, BottomNav safe-area-inset-bottom, overflow-x hidden
 - ✅ Задеплоено на Railway: elexus-hotel-production.up.railway.app
-- ⚠️ Inline styles → нужно перенести в Tailwind-токены (white-label требует, P1)
+- ✅ Inline styles → перенесены в Tailwind-токены (font-display, bg-navy, text-gold и т.д.)
+- ✅ PageHeader компонент — заголовки всех страниц унифицированы
+- ✅ useFocusTrap хук — WAI-ARIA focus management в модалах
+- ✅ animate-fade-slide-up CSS-класс — анимация тостов через глобальный класс
 
 ## Архитектура
 
@@ -94,10 +97,12 @@ PWA-приложение для гостей отеля (Hotel Guest Experience 
 - MICE event-specific content via CMS (программа, Wi-Fi, менеджер)
 - Push-уведомления
 - Мультиязычность RU/EN (next-intl v4)
-- Inline styles → Tailwind-токены (white-label)
 - CMS с напоминаниями, шаблонами, алертом устаревания
 - FAQ, расписание анимации
 - ROI-калькулятор в CMS
+- PWA service worker / offline cache
+- BottomNav active state для вложенных роутов (startsWith вместо ===)
+- BackButton: поддержка browser history для deep-link сценариев
 
 **P2 (следующая версия):**
 - AI-чатбот
@@ -144,10 +149,21 @@ PWA-приложение для гостей отеля (Hotel Guest Experience 
 
 ## Критический разбор (май 2026) — результаты
 
-Оценки от 3 специалистов:
-- **UX-дизайнер:** Visual 6.5 / UX 6.0 / Luxury Feel 5.5 из 10
-- **Frontend-разработчик:** Code 4 / Performance 5 / Accessibility 3 из 10
+**Оценки после рефакторинга (30 мая 2026):**
+- **UX-дизайнер:** Visual 6.5 / UX 6.5 / Luxury Feel 6.5 из 10
+- **Frontend-разработчик:** Code 7.0 / Performance 5.0 / Accessibility 5.5 из 10
 - **Продакт-менеджер:** demo-ready для разговора, НЕ для подписания
+
+**Что было сделано (2 коммита рефакторинга):**
+1. ✅ 4 бага исправлены: утечка данных между номерами, зависший loading в SpaBookingSheet, тихие сбои в admin и requests
+2. ✅ Focus trap (useFocusTrap хук) в WifiModal и SpaBookingSheet
+3. ✅ PageHeader компонент — убрал ~50 строк дублирования заголовков
+4. ✅ Все inline styles → Tailwind токены (font-display, bg-navy, text-gold и т.д.)
+5. ✅ animate-fade-slide-up CSS-класс вместо inline animation в 3 местах
+
+**Изначальные оценки (до рефакторинга):**
+- UX-дизайнер: Visual 6.5 / UX 6.0 / Luxury Feel 5.5
+- Frontend-разработчик: Code 4 / Performance 5 / Accessibility 3
 
 **Топ-5 задач до демо — все выполнены ✅:**
 1. ✅ Supabase realtime для requests (demo-blocker)
